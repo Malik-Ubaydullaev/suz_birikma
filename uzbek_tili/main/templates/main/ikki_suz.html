@@ -1,0 +1,28 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Ikki so'z{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>Ikki so'zdan tashkil topgan so'z birikmalari soni:</h1>
+        {% if suz_birikma %}
+            {% for el in suz_birkma %}
+                <div class="alert alert-warning">
+                    <h3>{{ el.title }}</h3>
+                    <p>{{ el.full_text }}</p>
+                </div>
+            {% endfor%}
+        {% else %}
+            <p>Siz ma'lumot kiritmadingiz</p>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {#<input type="text" placeholder="fayl manzilini kiriting" class="form-control"> <br>#}
+            {#<button class="btn btn-success" type="submit" >Faylni yuklang</button>#}
+
+            <input type="file" id="myFile" name="filename">
+            <input type="submit">
+        </form>
+    </div>
+{% endblock %}
